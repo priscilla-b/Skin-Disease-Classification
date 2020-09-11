@@ -1,0 +1,253 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "f31JYT",
+    "name": "getDialog"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "id": "CG5CAm"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "9uOZGH"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_9uOZGH()}",
+          "property": "user.name",
+          "validations": [
+            "(this.value) != null"
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "T5uBNF"
+          },
+          "activity": "${SendActivity_T5uBNF()}"
+        },
+        {
+          "$kind": "Microsoft.NumberInput",
+          "$designer": {
+            "id": "cyqzyG"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${NumberInput_Prompt_cyqzyG()}",
+          "property": "user.age"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "PlrUk4"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_PlrUk4()}",
+          "property": "user.no",
+          "validations": [
+            "length(this.value) == 10",
+            "int(this.value) != null"
+          ],
+          "invalidPrompt": "${TextInput_InvalidPrompt_PlrUk4()}"
+        },
+        {
+          "$kind": "Microsoft.NumberInput",
+          "$designer": {
+            "id": "e1V9RM"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 1,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${NumberInput_Prompt_e1V9RM()}",
+          "property": "user.number",
+          "invalidPrompt": "${NumberInput_InvalidPrompt_e1V9RM()}",
+          "validations": [
+            "length(this.value) == 10",
+            "(this.value) != null"
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "B0BERn"
+          },
+          "activity": "${SendActivity_B0BERn()}"
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "fznQwB"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${TextInput_Prompt_fznQwB()}",
+          "property": "user.attach"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "d6Z8XR"
+          },
+          "method": "POST",
+          "body": {
+            "Url": "${user.attach}"
+          },
+          "resultProperty": "dialog.api_response"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "iGPnNz"
+          },
+          "condition": "dialog.api_response.statusCode == 200",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "1fdnAc"
+              },
+              "activity": "${SendActivity_1fdnAc()}"
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "ZQwvcb"
+              },
+              "condition": "dialog.api_response.content['predictions'][0]['probability'] >0.5",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "581awd"
+                  },
+                  "activity": "${SendActivity_581awd()}"
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "eaM3kL"
+                  },
+                  "activity": "${SendActivity_eaM3kL()}"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "6VJElb"
+              },
+              "condition": "dialog.api_response.content['predictions'][1]['probability'] > 0.5",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "sNZCnL"
+                  },
+                  "activity": "${SendActivity_sNZCnL()}"
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "R5W1m6"
+                  },
+                  "activity": "${SendActivity_R5W1m6()}"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "oxdslw"
+              },
+              "condition": "dialog.api_response.content['predictions'][2]['probability'] >0.5",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "ctZYmu"
+                  },
+                  "activity": "${SendActivity_ctZYmu()}"
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "79586U"
+                  },
+                  "activity": "${SendActivity_79586U()}"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "jEaLQK"
+              },
+              "condition": "dialog.api_response.content['predictions'][3]['probability'] >0.5",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "y4s0d9"
+                  },
+                  "activity": "${SendActivity_y4s0d9()}"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "gNiCt1"
+              },
+              "condition": "dialog.api_response.content['predictions'][4]['probability'] >0.5",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "Ic1pk4"
+                  },
+                  "activity": "${SendActivity_Ic1pk4()}"
+                }
+              ]
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "uRjBF3"
+              },
+              "activity": "${SendActivity_uRjBF3()}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "getDialog.lg"
+}

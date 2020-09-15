@@ -8,7 +8,7 @@ The computer vision model was connected with a bot we built with the Microsoft B
 # How to use
 
 To use this project, first clone or fork the files to your local computer.
-
+Section 5.2.1 of the documentary shows a step by step approach on how we built the computer vision model on the Microsoft Azure platform.
 File: data_preparation.ipynb
 ------------------------------
 This file contains the codes we used to preprocess the data for the model in the jupyter notebooks. Only use this file if you want to run Script.ipynb, which contains the jupyter notebook codes.
